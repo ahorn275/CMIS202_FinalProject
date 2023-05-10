@@ -1,3 +1,13 @@
+// **********************************************************************************
+// Title: User Hash Table
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: UserHashTable.java
+// Description: Creates a Serializable hash table for storing Users whose hash codes
+//     are determined by their usernames; also contains methods for checking whether
+//     a username or User already exists, as well as verifying a username/password
+//     combination
+// **********************************************************************************
 import java.io.*;
 import java.util.LinkedList;
 
@@ -127,22 +137,6 @@ public class UserHashTable implements Serializable {
                     addUser(user);
                 }
             }
-        }
-    }
-
-    /** Save hash table to a file */
-    public void saveToFile(String filename) {
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(filename)))) {
-
-            // Write the hash table object to the file
-            out.writeObject(this);
-
-            // Flush the output stream to ensure all data is written to the file
-            out.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
