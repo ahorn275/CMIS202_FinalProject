@@ -1,3 +1,11 @@
+// **********************************************************************************
+// Title: Admin class
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: Admin.java
+// Description: Creates an Admin which extends from the User class (and so is
+//        Serializable) and has a pin
+// **********************************************************************************
 public class Admin extends User {
     private String pin;
 
