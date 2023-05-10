@@ -1,3 +1,14 @@
+// **********************************************************************************
+// Title: Wine List Class
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: WineList.java
+// Description: Creates a linked list implementation of a Serializable collection
+//     of Wine objects and provides methods for adding and removing wines, getting
+//     a wine from a specified index, checking if a wine is in the list, getting the
+//     size of the list, clearing the list, as well as two options for merge sort: one
+//     which uses Comparable and another which uses a specified Comparator
+// **********************************************************************************
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -90,81 +101,101 @@ public class WineList implements Serializable, Iterable<Wine> {
         head = tail = null;
     }
 
-    /** Quick Sort using Comparable
-     *     O(n log n) in the average case and O(n^2) in the worst case */
-    public void quickSort() {
-        quickSort(head, tail);
-    }
-
-    private void quickSort(WineNode<Wine> left, WineNode<Wine> right) {
-        if (left == null || right == null || left == right || left.prev == right) {
-            return;
-        }
-
-        WineNode<Wine> pivot = partition(left, right);
-        quickSort(left, pivot.prev);
-        quickSort(pivot.next, right);
-    }
-
-    private WineNode<Wine> partition(WineNode<Wine> left, WineNode<Wine> right) {
-        Wine pivot = right.wine;
-        WineNode<Wine> i = left.prev;
-
-        for (WineNode<Wine> j = left; j != right; j = j.next) {
-            if (j.wine.compareTo(pivot) <= 0) {
-                i = (i == null) ? left : i.next;
-                swap(i, j);
+    /** Divide-and-Conquer merge sort using Comparable - O(n log n) time complexity */
+    public void mergeSort() {
+        if (head != null) {
+            head = mergeSort(head);
+            tail = head;
+            while (tail.next != null) {
+                tail = tail.next;
             }
         }
-
-        i = (i == null) ? left : i.next;
-        swap(i, right);
-
-        return i;
     }
 
-    private void swap(WineNode<Wine> a, WineNode<Wine> b) {
-        if (a == null || b == null || a == b) {
-            return;
+    private WineNode<Wine> mergeSort(WineNode<Wine> head) {
+        if (head.next == null) {
+            return head;
         }
-
-        Wine temp = a.wine;
-        a.wine = b.wine;
-        b.wine = temp;
-    }
-
-
-    /** Quick Sort that takes in a Comparator
-     *      O(n log n) in the average case and O(n^2) in the worst case */
-    public void quickSort(Comparator<Wine> cmp) {
-        quickSort(head, tail, cmp);
-    }
-
-    private void quickSort(WineNode<Wine> left, WineNode<Wine> right, Comparator<Wine> cmp) {
-        if (left == null || right == null || left == right || left.prev == right) {
-            return;
+        WineNode<Wine> slow = head;
+        WineNode<Wine> fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-
-        WineNode<Wine> pivot = partition(left, right, cmp);
-        quickSort(left, pivot.prev, cmp);
-        quickSort(pivot.next, right, cmp);
+        WineNode<Wine> right = mergeSort(slow.next);
+        slow.next = null;
+        WineNode<Wine> left = mergeSort(head);
+        return merge(left, right);
     }
 
-    private WineNode<Wine> partition(WineNode<Wine> left, WineNode<Wine> right, Comparator<Wine> cmp) {
-        Wine pivot = right.wine;
-        WineNode<Wine> i = left.prev;
-
-        for (WineNode<Wine> j = left; j != right; j = j.next) {
-            if (cmp.compare(j.wine, pivot) <= 0) {
-                i = (i == null) ? left : i.next;
-                swap(i, j);
+    private WineNode<Wine> merge(WineNode<Wine> left, WineNode<Wine> right) {
+        WineNode<Wine> merged = new WineNode<>(null);
+        WineNode<Wine> cur = merged;
+        while (left != null && right != null) {
+            if (left.wine.compareTo(right.wine) <= 0) {
+                cur.next = left;
+                left = left.next;
+            } else {
+                cur.next = right;
+                right = right.next;
             }
+            cur = cur.next;
         }
+        cur.next = (left != null) ? left : right;
+        return merged.next;
+    }
 
-        i = (i == null) ? left : i.next;
-        swap(i, right);
+    /** Merge sort using a specified Comparator - O(n log n) time complexity */
+    public void mergeSort(Comparator<Wine> cmp) {
+        head = mergeSort(head, cmp);
+    }
 
-        return i;
+    private WineNode<Wine> mergeSort(WineNode<Wine> start, Comparator<Wine> cmp) {
+        if (start == null || start.next == null) {
+            return start;
+        }
+        WineNode<Wine> middle = getMiddle(start);
+        WineNode<Wine> nextOfMiddle = middle.next;
+        middle.next = null;
+        WineNode<Wine> left = mergeSort(start, cmp);
+        WineNode<Wine> right = mergeSort(nextOfMiddle, cmp);
+        return merge(left, right, cmp);
+    }
+
+    private WineNode<Wine> getMiddle(WineNode<Wine> start) {
+        if (start == null) {
+            return null;
+        }
+        WineNode<Wine> slow = start;
+        WineNode<Wine> fast = start;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private WineNode<Wine> merge(WineNode<Wine> left, WineNode<Wine> right, Comparator<Wine> cmp) {
+        if (left == null) {
+            return right;
+        }
+        if (right == null) {
+            return left;
+        }
+        WineNode<Wine> result;
+        if (cmp.compare(left.wine, right.wine) <= 0) {
+            result = left;
+            result.next = merge(left.next, right, cmp);
+        } else {
+            result = right;
+            result.next = merge(left, right.next, cmp);
+        }
+        return result;
+    }
+
+    /** Returns whether the list is empty */
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     /** Return an iterator */
