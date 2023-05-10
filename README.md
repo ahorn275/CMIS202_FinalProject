@@ -24,11 +24,15 @@ How does the software work?
 The vendor (admin) adds wines through the "AddWinePane", which has several fields laid out for the wine such as color, grape,
 region, sweetness, prices, tasting notes, etc. The vendor can also choose a photo for the wine, however there are default options 
 for each wine color included in the software. All wines in the software are added to a Wine Tree, which is a binary search tree 
-for wines. Wine Tree includes methods for searching for wines by name, color, grape, producer, and region, so that the consumer 
-can search for any wine based on those fields. Comparators for wines are also defined so that wines can be sorted by color, 
-grape, sweetness, price, or how many people have favorited the wine. Users (and admins) are all kept in a UserHashTable. Both
-the UserHashTable and Wine Tree load in at the start of each program from a file. The Wine class keeps track of how many 
-people have favorited a wine, and the User class keeps track of the user's favorited wines in a program defined WineList.
+for wines. WineTree includes methods for searching for wines by name, color, grape, producer, and region, so that the consumer 
+can search for any wine based on those fields. The Wine class implements Comparable and compares wines by name by default.
+Comparators for wines are also defined so that wines can be sorted by color, grape, sweetness, price, or how many people have
+favorited the wine. WineList is a linked list implementation for Wine objects, and includes its own implementation of mergeSort -
+including one which uses Comparable and another which uest the above defined Comparators. The current wines to be displayed are
+extracted from the Wine Tree to a Wine List using the Wine Tree's findBy methods, and the Wine List is sorted using mergeSort
+according to the user's choice. Users (and admins) are all kept in a UserHashTable. Both the UserHashTable and Wine Tree load
+in at the start of each program from a file. The Wine class keeps track of how many people have favorited a wine, and the User
+class keeps track of the user's favorited wines in a WineList.
 
 Why would anyone want to use the software over existing processes? 
 ------------------------------------------------------------------------------
