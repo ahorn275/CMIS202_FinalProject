@@ -1,3 +1,11 @@
+// **********************************************************************************
+// Title: User Class
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: User.java
+// Description: Creates a Serializable User object with a name, username, password,
+//     and WineList of favorite wines
+// **********************************************************************************
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -30,6 +38,10 @@ public class User implements Serializable {
     }
 
     /** Mutators */
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
