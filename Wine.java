@@ -1,3 +1,16 @@
+// **********************************************************************************
+// Title: Wine Class
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: Wine.java
+// Description: Creates a Serializable Wine object with name, producer, color,
+//      grape, region, vintage, ABV%, bottle price, glass price, sweetness level,
+//      tasting notes, pairings, sparkling, and image attributes. It also keeps
+//      track of how many favorites a particular wine has. The class implements
+//      Comparable and overrides the compareTo method to compare two wines by their
+//      name. It also overrides the equals method to define two wines as equal if all
+//      of their attributes are the same
+// **********************************************************************************
 import java.io.Serializable;
 
 public class Wine implements Serializable, Comparable<Wine> {
@@ -180,14 +193,42 @@ public class Wine implements Serializable, Comparable<Wine> {
         return this.name.compareTo(otherWine.getName());
     }
 
+    /** Check if two wines are equal */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Wine)) {
+            return false;
+        }
+        Wine other = (Wine) obj;
+        return name.equals(other.name)
+                && producer.equals(other.producer)
+                && color.equals(other.color)
+                && grape.equals(other.grape)
+                && region.equals(other.region)
+                && vintage == other.vintage
+                && Double.compare(alcoholByVolume, other.alcoholByVolume) == 0
+                && bottlePrice == other.bottlePrice
+                && glassPrice == other.glassPrice
+                && sweetness.equals(other.sweetness)
+                && tastingNotes.equals(other.tastingNotes)
+                && pairings.equals(other.pairings)
+                && sparkling == other.sparkling
+                && favorites == other.favorites
+                && imageFileName.equals(other.imageFileName);
+    }
+
+
     /** Return a string with this wine's attributes */
     @Override
     public String toString() {
-        return ("Name: " + getName() + "\nProducer: " + getProducer() + "\nGrape: " + getGrape() + "\nColor: " +
-                ((isSparkling())? "Sparkling " : "") + getColor() + "\nGrape: " + getGrape() +
-                "\nRegion: " + getRegion() + "\nVintage: " + ((getVintage() == 0)? "N/A": getVintage()) +
-                "\nABV: " + getAlcoholByVolume() + "\nBottle Price: " + getBottlePrice() + "\nGlass Price: " +
-                getGlassPrice() + "\nSweetness: " + getSweetness() + "\nTasting Notes: " + getTastingNotes() +
+        return ("Name: " + getName() + "\nProducer: " + getProducer() + "\nColor: " + getColor() +
+                "\nGrape: " + getGrape() + "\nRegion: " + getRegion() + "\nVintage: " +
+                ((getVintage() == 0)? "N/A": getVintage()) + "\nABV: " + getAlcoholByVolume() +
+                "\nBottle Price: " + getBottlePrice() + "\nGlass Price: " + getGlassPrice() +
+                "\nSweetness: " + getSweetness() + "\nTasting Notes: " + getTastingNotes() +
                 "\nPairings: " + getPairings() + "\nFavorites: " + getFavorites() +
                 "\nImage File: " + getImageFileName());
     }
