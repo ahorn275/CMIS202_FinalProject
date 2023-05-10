@@ -132,7 +132,7 @@ public class Main extends Application {
         btSignIn.setFont(Font.font("Georgia", FontWeight.BOLD, FontPosture.REGULAR, 16));
         btSignIn.setStyle("-fx-background-color: rgba(186, 130, 62, 0.8);" +
                 "-fx-text-fill: rgba(255, 251, 247, 0.8)");
-        inputBox.getChildren().addAll(username, tfUsername, password, pfPassword, btSignIn);
+        inputBox.getChildren().addAll(username, tfUsername, password, pfPassword, inputError, btSignIn);
         inputBox.setAlignment(Pos.CENTER);
 
         // Sign in button darkens as mouse enters
@@ -460,6 +460,7 @@ public class Main extends Application {
                     currentWines = wines.findByName(searchInput);
                     try {
                         configureWineDisplay(primaryStage);
+                        cboSortOptions.setValue(sortOptions[0]);
                     } catch (NoWinesFoundException ex) {
                         displayNoWinesFoundText();
                     }
@@ -469,6 +470,7 @@ public class Main extends Application {
                     currentWines = wines.findByGrape(searchInput);
                     try {
                         configureWineDisplay(primaryStage);
+                        cboSortOptions.setValue(sortOptions[0]);
                     } catch (NoWinesFoundException ex) {
                         displayNoWinesFoundText();
                     }
@@ -478,6 +480,7 @@ public class Main extends Application {
                     currentWines = wines.findByProducer(searchInput);
                     try {
                         configureWineDisplay(primaryStage);
+                        cboSortOptions.setValue(sortOptions[0]);
                     } catch (NoWinesFoundException ex) {
                         displayNoWinesFoundText();
                     }
@@ -487,6 +490,7 @@ public class Main extends Application {
                     currentWines = wines.findByRegion(searchInput);
                     try {
                         configureWineDisplay(primaryStage);
+                        cboSortOptions.setValue(sortOptions[0]);
                     } catch (NoWinesFoundException ex) {
                         displayNoWinesFoundText();
                     }
@@ -500,6 +504,7 @@ public class Main extends Application {
             currentWines = wines.findByColor("Sparkling");
             try {
                 configureWineDisplay(primaryStage);
+                cboSortOptions.setValue(sortOptions[0]);
             } catch (NoWinesFoundException ex) {
                 displayNoWinesFoundText();
             }
@@ -509,6 +514,7 @@ public class Main extends Application {
             currentWines = wines.findByColor("White");
             try {
                 configureWineDisplay(primaryStage);
+                cboSortOptions.setValue(sortOptions[0]);
             } catch (NoWinesFoundException ex) {
                 displayNoWinesFoundText();
             }
@@ -518,6 +524,7 @@ public class Main extends Application {
             currentWines = wines.findByColor("Rosé");
             try {
                 configureWineDisplay(primaryStage);
+                cboSortOptions.setValue(sortOptions[0]);
             } catch (NoWinesFoundException ex) {
                 displayNoWinesFoundText();
             }
@@ -527,6 +534,7 @@ public class Main extends Application {
             currentWines = wines.findByColor("Red");
             try {
                 configureWineDisplay(primaryStage);
+                cboSortOptions.setValue(sortOptions[0]);
             } catch (NoWinesFoundException ex) {
                 displayNoWinesFoundText();
             }
@@ -536,6 +544,7 @@ public class Main extends Application {
             currentWines = currentUser.getFavoriteWines();
             try {
                 configureWineDisplay(primaryStage);
+                cboSortOptions.setValue(sortOptions[0]);
             } catch (NoWinesFoundException ex) {
                 displayNoWinesFoundText();
             }
@@ -543,6 +552,7 @@ public class Main extends Application {
         btAllWines.setOnAction(e -> {
             saveData();
             currentWines = wines.toList();
+            cboSortOptions.setValue(sortOptions[0]);
             try {
                 configureWineDisplay(primaryStage);
             } catch (NoWinesFoundException ex) {
