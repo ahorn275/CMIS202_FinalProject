@@ -1,3 +1,13 @@
+// **********************************************************************************
+// Title: Wine Pane
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: WinePane.java
+// Description: Creates a Stack Pane for displaying the photo and description of a
+//    wine object. It also contains methods for toggling the heart icon on mouse click
+//    and adding/removing the wine from the user's list of favorite wines. Clickable
+//    text is added to the wine pane for admins for editing or removing a wine.
+// **********************************************************************************
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
@@ -24,7 +34,8 @@ public class WinePane extends StackPane {
         this.wine = wine;
         Image wineImage= new Image(wine.getImageFileName(), 150, 150, true, false);
         setPadding(new Insets(5));
-        setStyle("-fx-border-color: rgba(81, 53, 29, 0.86); -fx-background-color: rgba(255, 248, 242, 0.76)");
+        setStyle("-fx-border-color: rgba(192, 183, 174, 1); -fx-background-color: rgba(255, 248, 242, 0.76);" +
+                "-fx-border-width: 2px");
 
         // Wine name and grape
         mainBox.setAlignment(Pos.CENTER);
@@ -125,6 +136,7 @@ public class WinePane extends StackPane {
         // Whether heart is filled depends on if wine is in user's favorited wines list
         heartFilled = (user.getFavoriteWines().contains(wine))? true : false;
         heartView.setImage((heartFilled)? filledHeart: unfilledHeart);
+        heartView.setStyle("-fx-cursor: hand");
         HBox favoritesBox = new HBox(5, heartView, favoriteText);
         favoritesBox.setAlignment(Pos.CENTER);
         updateFavoriteText(wine);
@@ -157,6 +169,15 @@ public class WinePane extends StackPane {
         if (user instanceof Admin)
             mainBox.getChildren().add(editBox);
 
+    }
+
+    /** Getters */
+    public Text getEditText() {
+        return editText;
+    }
+
+    public Text getDeleteText() {
+        return deleteText;
     }
 
     /** Set headings style */
