@@ -1,3 +1,11 @@
+// **********************************************************************************
+// Title: Welcome Pane
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: WelcomePane.java
+// Description: Creates a welcome page which gives information about the program and
+//    provides buttons for signing in or creating a new account
+// **********************************************************************************
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -33,19 +41,16 @@ public class WelcomePane extends BorderPane {
         VBox centerBox = new VBox(30);
         centerBox.setAlignment(Pos.CENTER);
         Text message = new Text(
-                     "This program acts as a database for wine vendors to categorize and display their inventories\n" +
-                        "in a convenient and appealing format for their consumers. Vendors can input their wines into\n" +
-                        "the system, including description fields such as the grape, region, vintage, ABV%, bottle and\n" +
-                        "glass prices, sweetness level, tasting notes, and food pairings for that particular wine, and\n" +
-                        "the Wine Wizard does all the rest! Consumers are able to see all that the vendor has to offer,\n" +
-                        "and even keep track of all of their favorite wines.\n\n" +
-                        "Wines can be sorted by color, grape, sweetness level, price, or even how many people have\n" +
-                        "favorited them. Wines can also be searched by color, grape, producer, or region, so if the\n" +
-                        "consumer is looking for something specific it will be easy to find! The Wine Wizard is a\n" +
-                        "great tool for both vendors and consumers alike as the ease and accessibility will keep\n" +
-                        "customers coming back and favoriting capabilities allow vendors to better understand their\n" +
-                        "customers want!\n\n" +
-                        "We are very excited for you to join us! To get started, please sign in or create an account below.");
+                     "This program is designed to help wine vendors showcase their inventory in a user-friendly and\n" +
+                        "visually appealing format for their consumers. Vendors can easily input information about their\n" +
+                        "wine, including grape, region, vintage, ABV%, bottle & glass prices, sweetness level, tasting\n" +
+                        " notes, and food pairings, and the Wine Wizard takes care of the rest.\n\n" +
+                        "Consumers can browse through the vendor's wine selection and keep track of their favorite\n" +
+                        "wines. The wines can be sorted by color, grape, sweetness level, price, or popularity, making\n" +
+                        "it easy for consumers to find what they're looking for. Additionally, the search function allows\n" +
+                        "consumers to find specific wines by color, grape, producer, or region.\n\n" +
+                        "With this program, vendors can efficiently manage their inventory and provide consumers with\n" +
+                        "a seamless experience, ultimately boosting sales and customer satisfaction.");
         message.setFont(Font.font("Georgia", FontWeight.MEDIUM, FontPosture.REGULAR, 22));
         message.setFill(Color.rgb(32, 3, 3, 0.8));
 
