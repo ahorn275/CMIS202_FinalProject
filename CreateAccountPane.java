@@ -1,3 +1,11 @@
+// **********************************************************************************
+// Title: Create Account Pane
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: CreateAccountPane.java
+// Description: Creates a pane for the user to create an account and also validates
+//      the user's inputs
+// **********************************************************************************
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -34,7 +42,7 @@ public class CreateAccountPane extends BorderPane {
 
         // Heading for welcome and instructions
         VBox heading = new VBox(5);
-        Text welcome = new Text("Welcome, New User!");
+        Text welcome = new Text("Welcome, New " + ((isAdmin)? "Admin!":"User!"));
         welcome.setFont(Font.font("Algerian", FontWeight.NORMAL,
                 FontPosture.REGULAR, 54));
         welcome.setFill(Color.rgb(149, 111, 25, 0.96));
