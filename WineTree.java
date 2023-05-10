@@ -1,6 +1,13 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+// **********************************************************************************
+// Title: Wine Tree
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: WineTree.java
+// Description: Creates a Serializable binary search tree data structure implementation
+//    for Wine objects which has methods for searching, inserting, deleting, and finding
+//    wines in the tree by name, region, grape, producer or color, as well as converting
+//    the tree to a WineList using an Inorder iterator
+// **********************************************************************************
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -38,6 +45,22 @@ public class WineTree implements Serializable, Iterable<Wine> {
         return false; // Wine not found
     }
 
+    /** Returns the wine with the same name */
+    public Wine find(String name) {
+        WineNode<Wine> current = root;
+        while (current != null) {
+            int cmp = name.compareTo(current.wine.getName());
+            if (cmp == 0) {
+                return current.wine;
+            } else if (cmp < 0) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
+        return null; // Wine not found
+    }
+
     /** Insert a wine into the wine tree */
     public boolean insert(Wine wine) {
         if (root == null)
@@ -55,8 +78,9 @@ public class WineTree implements Serializable, Iterable<Wine> {
                     parent = current;
                     current = current.right;
                 }
-                else
+                else {
                     return false; // Duplicate node not inserted
+                }
             }
 
             // Create the new node and attach it to the parent node
@@ -136,20 +160,30 @@ public class WineTree implements Serializable, Iterable<Wine> {
         size = 0;
     }
 
-    /** Finds a wine by name */
-    public Wine findByName(String name) {
-        WineNode<Wine> current = root;
+    /** Convert tree to a wine list */
+    public WineList toList() {
+        WineList result = new WineList();
+        for (Wine wine: this)
+            result.add(wine);
+        return result;
+    }
 
-        while (current != null) {
-            if (name.equalsIgnoreCase(current.wine.getName()))
-                return current.wine;
-            else if (name.compareToIgnoreCase(current.wine.getName()) < 0)
-                current = current.left;
-            else
-                current = current.right;
+    /** Returns a list of wines that contain the inputted String in their name */
+    public WineList findByName(String name) {
+        WineList result = new WineList();
+        findByNameHelper(name, root, result);
+        return result;
+    }
+
+    private void findByNameHelper(String name, WineNode<Wine> current, WineList result) {
+        if (current == null) {
+            return;
         }
-
-        return null; // Wine not found
+        findByNameHelper(name, current.left, result);
+        if (current.wine.getName().toLowerCase().contains(name.toLowerCase())) {
+            result.add(current.wine);
+        }
+        findByNameHelper(name, current.right, result);
     }
 
     /** Finds a list of wines by color */
@@ -163,11 +197,11 @@ public class WineTree implements Serializable, Iterable<Wine> {
         if (current == null) {
             return;
         }
-        findByRegionHelper(color, current.left, result);
+        findByColorHelper(color, current.left, result);
         if (current.wine.getColor().toLowerCase().contains(color.toLowerCase())) {
             result.add(current.wine);
         }
-        findByRegionHelper(color, current.right, result);
+        findByColorHelper(color, current.right, result);
     }
 
     /** Finds a list of wines by grape */
@@ -219,20 +253,6 @@ public class WineTree implements Serializable, Iterable<Wine> {
             result.add(current.wine);
         }
         findByRegionHelper(region, current.right, result);
-    }
-
-    /** Save tree to file */
-    public void saveToFile(String filename) {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
-
-            out.writeObject(this);
-
-            // Flush the output stream to ensure all data is written to the file
-            out.flush();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /** Return an iterator */
