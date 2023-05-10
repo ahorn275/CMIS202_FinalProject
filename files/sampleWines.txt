@@ -1,0 +1,140 @@
+Pine Ridge Chenin Blanc + Viognier Sparkling
+Pine Ridge
+Sparkling White
+Chenin Blanc and Viognier
+Lodi, California
+0
+12.5
+51
+14
+Semi-Sweet
+Bright, crisp, and refreshing with notes of honeyed apples and pears, bright lemon-lime, and a subtly spicy finish
+Salads, Seafood, Fried Green Tomatoes
+true
+images/pineRidge.jpg
+Dopff & Irion Crémant d'Alsace Brut Rosé
+Dopff & Irion - Château de Riquewihr
+Sparkling Rosé
+Pinot Noir
+Alsace, France
+0
+12.5
+55
+15
+Brut
+Lively, elegant, and floral with notes of orange peel, raspberries and under-ripe strawberries
+Deviled eggs, Seafood, Chicken
+true
+images/dopffAndIrionBrutRose.jpg
+Stolpman "Love You Bunches"
+Stolpman
+Sparkling Rosé
+Mourvèdre, Grenache, Syrah
+Central Coast, California
+2021
+12.5
+45
+13
+Semi-Sweet
+Light and energetic with notes of lemon-lime, tart strawberry, mint, and hints of bubble gum
+Salmon, Fruity desserts
+true
+images/loveYouBunches.png
+Cleto Chiarli "Centenario"
+Cleto Chiarli
+Sparkling Light Red
+Lambrusco Grasparossa
+Emilia-Romagna, Italy
+0
+8.0
+43
+12
+Sweet
+Bright, luscious, and rich with medium acidity and notes of overripe boysenberry and sweet blueberry pie
+Cheese Charcuterie, Pork belly, Seafood, Pasta, Pizza, Chocolate, Fruit-based Desserts
+true
+images/centenario.jpg
+Complices de Loire Sauvignon Blanc
+Complices de Loire "Pointe D'Agrumes"
+White
+Sauvignon Blanc
+Touraine, Loire Valley, France
+2020
+12.5
+45
+13
+Dry
+Crisp and lively with notes of white peach, grapefruit, lemon, mineral like salty stones, and a hint of gooseberry
+Mussels, White Fish, Salad
+false
+images/complices.png
+Ronco Dei Pini Pinot Grigio
+Ronco Dei Pini
+White
+Pinot Grigio
+Friuli-Venezia Giulia, Italy
+2021
+13.0
+45
+13
+Off-Dry
+Balanced and soft white wine with expressed notes of citrus, green plums, kiwi, and distant mineral
+Pear Salad, Octopus Salad
+false
+images/roncoDeiPini.png
+Argyle Pinot Noir
+Argyle
+Rosé
+Pinot Noir
+Willamette, Oregon
+2022
+14.0
+53
+15
+Dry
+Soft and soothing with notes of orange zest, Rainier cherries, and slight amber
+Salmon, Salad
+false
+images/argyle.png
+G.D Vajra Barbera D'Alba
+G.D Vajra
+Medium Red
+Barbera D'Alba
+Piedmonte, Italy
+2021
+15.5
+59
+16
+Dry
+Soft yet seductive with notes of rose petals, tart raspberries, and black pepper
+Butternut Squash, Filet Mignon, Hangar Steak
+false
+images/barbera.png
+Broadside Cabernet Sauvignon
+Broadside
+Full-Bodied Red
+Cabernet Sauvignon
+Paso Robles, California
+2020
+13.5
+53
+15
+Sweet
+Well structured and rich red wine with notes of cassis, bay lead, bright cherry, and a slight minerality
+Ribeye, Short Rib
+false
+images/broadside.png
+Kanonkop Cabernet Sauvignon
+Kanonkop "Kadette" Estate
+Full-Bodied Red
+Cabernet Sauvignon
+Stellenbosch, South Africa
+2020
+14.5
+43
+12
+Dry
+Rich and well-rounded with notes of blue fruits, layers of rich baking spices, and a finish like velvet
+Denver Cut, Filet
+false
+images/kanonkop.png
