@@ -1,3 +1,11 @@
+// **********************************************************************************
+// Title: Wine Manage Pane
+// Author: Autumn Horn
+// Course Section: CMIS202-ONL1 (Seidel) Spring 2023
+// File: WineManagePane.java
+// Description: Creates a page for either adding a new wine or editing an already created
+//     wine. It also validates the user's inputs.
+// **********************************************************************************
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -17,7 +25,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.time.Year;
 
-public class AddWinePane extends BorderPane {
+public class WineManagePane extends BorderPane {
+    private Text title = new Text();
+    private Text instructions = new Text();
     private TextField tfName = new TextField();
     private TextField tfProducer = new TextField();
     private ComboBox<String> cboColors = new ComboBox<>();
@@ -42,18 +52,19 @@ public class AddWinePane extends BorderPane {
     private int finalBottlePrice;
     private int finalGlassPrice;
 
-    public AddWinePane() {
+    /** A pane for adding a new wine */
+    public WineManagePane() {
         setStyle("-fx-background-color: rgba(255, 246, 244, 0.8)");
         setPadding(new Insets(10));
 
         // Heading for welcome and instructions
         VBox heading = new VBox(5);
-        Text title = new Text("Add A Wine");
+        title.setText("Add A Wine");
         title.setFont(Font.font("Algerian", FontWeight.NORMAL,
                 FontPosture.REGULAR, 54));
         title.setFill(Color.rgb(149, 111, 25, 0.96));
         // Admin instructions include 4-digit pin
-        Text instructions = new Text("To add a new wine, please fill out the fields below. If vintage is unknown " +
+        instructions.setText("To add a new wine, please fill out the fields below. If vintage is unknown " +
             "or inapplicable, please input N/A.");
         instructions.setFont(Font.font("Bookman Old Style", FontWeight.NORMAL,
                 FontPosture.ITALIC, 16));
@@ -224,6 +235,35 @@ public class AddWinePane extends BorderPane {
 
     }
 
+    /** A pane for editing an already established wine */
+    public WineManagePane(Wine wine) {
+        this();
+        // Set title, instructions, and button to reflect edit action
+        title.setText("Edit Wine");
+        instructions.setText("Please change the field(s) you would like to edit below.");
+        btAddWine.setText("Save Changes");
+
+        // Fill text fields with the wine's previously entered attributes
+        tfName.setText(wine.getName());
+        tfProducer.setText(wine.getProducer());
+        cboColors.setValue(wine.getColor().replaceAll("^Sparkling ", ""));
+        if (wine.isSparkling())
+            rbYes.setSelected(true);
+        else
+            rbNo.setSelected(false);
+        tfGrape.setText(wine.getGrape());
+        tfRegion.setText(wine.getRegion());
+        int savedVintage = wine.getVintage();
+        tfVintage.setText((savedVintage == 0)? "N/A": String.valueOf(savedVintage));
+        tfABV.setText(String.format("%.1f", wine.getAlcoholByVolume()));
+        tfBottlePrice.setText(String.valueOf(wine.getBottlePrice()));
+        tfGlassPrice.setText(String.valueOf(wine.getGlassPrice()));
+        cboSweetness.setValue(wine.getSweetness());
+        taTastingNotes.setText(wine.getTastingNotes());
+        taPairings.setText(wine.getPairings());
+        imagePath.setText(wine.getImageFileName());
+    }
+
     /** Getters */
     public TextField getTfName() {
         return tfName;
@@ -391,6 +431,4 @@ public class AddWinePane extends BorderPane {
         errorMessage.setText("");
         return true;
     }
-
-
 }
